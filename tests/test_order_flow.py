@@ -7,7 +7,7 @@ from urls import MAIN_URL
 
 @allure.feature("Заказ самоката")
 @allure.story("Позитивный сценарий заказа с разными данными и точками входа")
-@pytest.mark.parametrize("data", ORDER_DATASETS, ids=["top_button_dataset1", "bottom_button_dataset2"])
+@pytest.mark.parametrize("data", ORDER_DATASETS, ids=["Order top button", "Order bottom button"])
 def test_order_scooter_positive_flow(driver, data):
     main = MainPage(driver)
     order = OrderPage(driver)
@@ -26,9 +26,9 @@ def test_order_scooter_positive_flow(driver, data):
 
     with allure.step("Проверить переход по логотипу Самоката"):
         main.click_logo_scooter()
-        assert driver.current_url == MAIN_URL
+        assert main.get_current_url() == MAIN_URL
 
     with allure.step("Проверить переход по логотипу Яндекса"):
         main.click_logo_yandex()
         main.switch_to_new_tab()
-        assert "dzen" in driver.current_url in driver.current_url
+        assert "dzen" in main.get_current_url()

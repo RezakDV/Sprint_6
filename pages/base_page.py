@@ -51,3 +51,7 @@ class BasePage:
     def wait_default(self):
         WebDriverWait(self.driver, DEFAULT_TIMEOUT).until(lambda _: True)
         
+    @allure.step("Получить текущий URL")
+    def get_current_url(self):
+        return self.driver.current_url
+    
